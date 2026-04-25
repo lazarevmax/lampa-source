@@ -8,7 +8,7 @@ import Emit from '../../utils/emit'
 import TMDB from '../../core/api/sources/tmdb'
 import Router from '../../core/router'
 
-class Descriptiopn extends Emit{
+class Descriptiopn extends Emit {
     constructor(data) {
         super()
 
@@ -17,15 +17,15 @@ class Descriptiopn extends Emit{
 
         this.emit('init')
     }
-    
-    create(){
-        this.html = Template.get('items_line',{title: Lang.translate('full_detail')})
 
-        let media     = this.card.name ? 'tv' : 'movie'
+    create() {
+        this.html = Template.get('items_line', { title: ''/*Lang.translate('full_detail')*/ })
+
+        let media = this.card.name ? 'tv' : 'movie'
         let countries = TMDB.parseCountries(this.card)
-        let date      = (this.card.release_date || this.card.first_air_date || '') + ''
+        let date = (this.card.release_date || this.card.first_air_date || '') + ''
 
-        this.body = Template.get('full_descr',{
+        this.body = Template.get('full_descr', {
             text: (this.card.overview || Lang.translate('full_notext')) + '<br><br>',
             relise: date.length > 3 ? Utils.parseTime(date).full : date.length > 0 ? date : Lang.translate('player_unknown'),
             budget: '$ ' + Utils.numberWithSpaces(this.card.budget || 0),
@@ -34,8 +34,8 @@ class Descriptiopn extends Emit{
 
         let tags = this.body.find('.full-descr__tags')
 
-        if(this.card.genres.length){
-            tags.append(this.tag(Lang.translate('full_genre'), this.card.genres, (genre)=>{
+        if (this.card.genres.length) {
+            tags.append(this.tag(Lang.translate('full_genre'), this.card.genres, (genre) => {
                 Activity.push({
                     url: genre.url || media,
                     title: Utils.capitalizeFirstLetter(genre.name),
@@ -47,16 +47,16 @@ class Descriptiopn extends Emit{
             }))
         }
 
-        if(this.card.production_companies.length){
-            tags.append(this.tag(Lang.translate('full_production'), this.card.production_companies, (company)=>{
-                Router.call('company', {...company, card: this.card})
+        if (this.card.production_companies.length) {
+            tags.append(this.tag(Lang.translate('full_production'), this.card.production_companies, (company) => {
+                Router.call('company', { ...company, card: this.card })
             }))
         }
 
         let key_tags = this.card.keywords ? (this.card.keywords.results || this.card.keywords.keywords) : []
 
-        if(key_tags.length){
-            tags.append(this.tag(Lang.translate('full_keywords'), key_tags, (key)=>{
+        if (key_tags.length) {
+            tags.append(this.tag(Lang.translate('full_keywords'), key_tags, (key) => {
                 Activity.push({
                     url: 'discover/' + media,
                     title: Utils.capitalizeFirstLetter(key.name),
@@ -68,10 +68,10 @@ class Descriptiopn extends Emit{
             }))
         }
 
-        if(!this.card.budget) $('.full--budget', this.body).remove()
-        if(!countries.length) $('.full--countries', this.body).remove()
+        if (!this.card.budget) $('.full--budget', this.body).remove()
+        if (!countries.length) $('.full--countries', this.body).remove()
 
-        this.body.find('.selector').on('hover:focus hover:enter hover:hover hover:touch',(e)=>{
+        this.body.find('.selector').on('hover:focus hover:enter hover:hover hover:touch', (e) => {
             this.last = e.target
         })
 
@@ -80,60 +80,60 @@ class Descriptiopn extends Emit{
         this.emit('create')
     }
 
-    tag(name, items, call){
+    tag(name, items, call) {
         let elem = $(`<div class="tag-count selector">
             <div class="tag-count__name">${name}</div>
             <div class="tag-count__count">${items.length}</div>
         </div>`)
-    
-        elem.on('hover:enter',()=>{
-            let select = items.map(a=>{
+
+        elem.on('hover:enter', () => {
+            let select = items.map(a => {
                 return {
                     title: Utils.capitalizeFirstLetter(a.name),
                     elem: a
                 }
             })
-    
+
             Select.show({
                 title: name,
                 items: select,
-                onSelect: (a)=>{
+                onSelect: (a) => {
                     this.toggle()
-    
+
                     call(a.elem)
                 },
-                onBack: ()=>{
+                onBack: () => {
                     this.toggle()
                 }
             })
         })
-    
+
         return elem
     }
-    
-    toggle(){
+
+    toggle() {
         let controller = {
             link: this,
-            toggle: ()=>{
+            toggle: () => {
                 Controller.collectionSet(this.render())
                 Controller.collectionFocus(this.last, this.render())
 
                 this.emit('toggle')
             },
-            update: ()=>{},
-            right: ()=>{
+            update: () => { },
+            right: () => {
                 Navigator.move('right')
             },
-            left: ()=>{
-                if(Navigator.canmove('left')) Navigator.move('left')
+            left: () => {
+                if (Navigator.canmove('left')) Navigator.move('left')
                 else this.emit('left')
             },
-            down: ()=>{
-                if(Navigator.canmove('down')) Navigator.move('down')
+            down: () => {
+                if (Navigator.canmove('down')) Navigator.move('down')
                 else this.emit('down')
             },
-            up: ()=>{
-                if(Navigator.canmove('up')) Navigator.move('up')
+            up: () => {
+                if (Navigator.canmove('up')) Navigator.move('up')
                 else this.emit('up')
             },
             back: this.emit.bind(this, 'back')
@@ -146,11 +146,11 @@ class Descriptiopn extends Emit{
         Controller.toggle('full_descr')
     }
 
-    render(js){
+    render(js) {
         return js ? this.html[0] : this.html
     }
 
-    destroy(){
+    destroy() {
         this.body.remove()
         this.html.remove()
 

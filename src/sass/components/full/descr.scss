@@ -1,4 +1,4 @@
-.full-descr{
+.full-descr {
     padding: 0 $offset;
     display: flex;
 
@@ -6,14 +6,14 @@
         display: block;
     }
 
-    &__text{
+    &__text {
         font-size: 1.3em;
         line-height: 1.4;
         font-weight: 300;
         max-height: 70vh;
         overflow: hidden;
         max-height: 41vh;
-        mask-image: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 80%,rgba(255,255,255,0) 100%);
+        mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0) 100%);
         width: 70%;
 
         @media screen and (max-width: $media_lg) {
@@ -21,11 +21,11 @@
         }
     }
 
-    &__left{
+    &__left {
         flex-grow: 1;
     }
 
-    &__right{
+    &__right {
         flex-shrink: 0;
         width: 30%;
         padding-left: 2.3em;
@@ -37,57 +37,58 @@
         }
     }
 
-    &__details{
+    &__details {
         display: flex;
         flex-wrap: wrap;
         margin: -1em;
 
-        > *{
+        >* {
             margin: 1em
         }
     }
 
-    &__line{
+    &__line {
         margin-top: 2em;
 
-        &-name{
+        &-name {
             font-size: 1.2em;
             margin-bottom: 1em;
         }
 
-        &-body{
+        &-body {
             display: flex;
             flex-wrap: wrap;
             margin: -0.2em;
         }
     }
 
-    &__info{
-        &-name{
-            font-size: 1.2em;
-            margin-bottom: 0.7em;
+    &__info {
+        &-name {
+            font-size: 0.8em;
+            margin-bottom: 0.4em;
+            opacity: 0.4;
         }
 
-        &-body{
+        &-body {
             font-size: 1.3em;
             font-weight: 300;
         }
     }
 
-    &__tag{
+    &__tag {
         border-radius: 0.6em;
-        background-color: rgba(0,0,0,0.3);
+        background-color: rgba(0, 0, 0, 0.3);
         padding: 0.4em 0.8em 0.5em 0.8em;
         font-size: 1.2em;
         margin: 0.2em;
 
-        &.focus{
+        &.focus {
             background-color: #fff;
             color: #000;
         }
     }
 
-    &__tags{
+    &__tags {
         display: flex;
         flex-wrap: wrap;
         margin: -0.5em;
@@ -97,7 +98,7 @@
             font-size: 0.9em;
         }
 
-        > * {
+        >* {
             margin: 0.5em
         }
     }

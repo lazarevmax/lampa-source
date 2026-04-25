@@ -1,9 +1,10 @@
 @keyframes animation-card-focus {
-    40% {
-        transform: translate3d(0,-1em,0);
+    20% {
+        transform: scale(1.1);
     }
+
     100% {
-        transform: translate3d(0,0,0);
+        transform: scale();
     }
 }
 
@@ -11,6 +12,7 @@
     40% {
         transform: scale(1.2);
     }
+
     100% {
         transform: scale(1);
     }
@@ -18,10 +20,11 @@
 
 @keyframes animation-file-focus {
     40% {
-        transform: translate3d(-1em,0,0);
+        transform: translate3d(-1em, 0, 0);
     }
+
     100% {
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
@@ -29,144 +32,165 @@
     40% {
         transform: scale(0.9);
     }
+
     100% {
         transform: scale(1);
     }
 }
 
 @keyframes animation-modal {
-    0%{
+    0% {
         opacity: 0;
-        transform: translate3d(0,-5em,0) scale(0.9);
+        transform: translate3d(0, -5em, 0) scale(0.9);
     }
+
     100% {
         opacity: 1;
-        transform: translate3d(0,0,0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1);
     }
 }
 
 @keyframes animation-full-poster {
-    0%{
-        transform: translate3d(-2em,0,0);
+    0% {
+        transform: translate3d(-2em, 0, 0);
     }
+
     100% {
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes animation-full-background {
-    0%{
-        transform: translate3d(10%,0,0);
+    0% {
+        transform: translate3d(10%, 0, 0);
     }
+
     100% {
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes animation-opacity {
-    0%{
+    0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
     }
 }
 
 @keyframes animation-opacity-blink {
-    0%{
+    0% {
         opacity: 0;
     }
+
     50% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
     }
 }
 
 @keyframes animation-zoom-down {
-    0%{
+    0% {
         transform: scale(1.2);
     }
+
     100% {
         transform: scale(1.0);
     }
 }
 
 @keyframes animation-activity {
-    0%{
-        transform: translate3d(0,14%,0);
+    0% {
+        transform: translate3d(0, 14%, 0);
     }
+
     100% {
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes animation-from-below {
-    0%{
-        transform: translate3d(0,50%,0);
+    0% {
+        transform: translate3d(0, 50%, 0);
     }
+
     100% {
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes animation-down {
-    0%{
-        transform: translate3d(0,0,0);
+    0% {
+        transform: translate3d(0, 0, 0);
         opacity: 1;
     }
+
     100% {
-        transform: translate3d(0,50%,0);
+        transform: translate3d(0, 50%, 0);
         opacity: 0;
     }
 }
 
-body.advanced--animation:not(.no--animation){
-    .card:not(.card--wide){
+body.advanced--animation:not(.no--animation) {
+    .card:not(.card--wide) {
+
         &.focus,
-        &.hover{
-            .card__view{
-                animation: animation-card-focus 0.2s
+        &.hover {
+
+            transform: scale3d(1.05, 1.05, 1.05);
+            transition: all 0.1s ease-in;
+            z-index: 110;
+
+            .card__view {
+                /*animation: animation-card-focus 0.2s*/
+
             }
         }
 
-        &.animate-trigger-enter .card__view{
+        &.animate-trigger-enter .card__view {
             animation: animation-trigger-enter 0.2s forwards
         }
     }
 
-    .card-episode{
+    .card-episode {
+
         &.focus,
-        &.hover{
-            .full-episode{
+        &.hover {
+            .full-episode {
                 animation: animation-card-focus 0.2s
             }
         }
 
-        &.animate-trigger-enter .full-episode{
+        &.animate-trigger-enter .full-episode {
             animation: animation-trigger-enter 0.2s forwards
         }
     }
 
-    .explorer-card__head-img{
+    .explorer-card__head-img {
+
         &.focus,
-        &.hover{
+        &.hover {
             animation: animation-card-focus 0.2s
         }
 
-        &.animate-trigger-enter{
+        &.animate-trigger-enter {
             animation: animation-trigger-enter 0.2s forwards
         }
     }
 
-    .torrent-item{
+    .torrent-item {
+
         &.focus,
-        &.hover{
+        &.hover {
             animation: animation-file-focus 0.2s
         }
 
-        &.animate-trigger-enter{
+        &.animate-trigger-enter {
             animation: animation-trigger-enter 0.2s forwards
         }
     }
@@ -178,84 +202,90 @@ body.advanced--animation:not(.no--animation){
     .full-descr__tag,
     .tag-count,
     .full-review,
-    .full-review-add{
+    .full-review-add {
+
         &.focus,
-        &.hover{
+        &.hover {
             animation: animation-button-focus 0.2s
         }
 
-        &.animate-trigger-enter:not([data-action]){
+        &.animate-trigger-enter:not([data-action]) {
             animation: animation-trigger-enter 0.2s forwards
         }
     }
 
-    .full-person{
+    .full-person {
+
         &.focus,
-        &.hover{
-            .full-person__photo{
+        &.hover {
+            .full-person__photo {
                 animation: animation-button-focus 0.2s
             }
         }
 
-        &.animate-trigger-enter .full-person__photo{
+        &.animate-trigger-enter .full-person__photo {
             animation: animation-trigger-enter 0.2s forwards
         }
     }
 
-    .settings-folder{
+    .settings-folder {
+
         &.focus,
-        &.hover{
-            .settings-folder__icon{
+        &.hover {
+            .settings-folder__icon {
                 animation: animation-button-focus 0.2s
             }
         }
 
-        &.animate-trigger-enter .settings-folder__icon{
+        &.animate-trigger-enter .settings-folder__icon {
             animation: animation-trigger-enter 0.2s forwards
         }
     }
 
-    .modal.animate .modal__content{
+    .modal.animate .modal__content {
         animation: animation-modal 0.3s;
     }
-    .modal.modal--full.animate .modal__content{
+
+    .modal.modal--full.animate .modal__content {
         animation: animation-from-below 0.3s;
     }
 
-    .full-start__background.loaded{
+    .full-start__background.loaded {
         animation: animation-full-background 0.3s
     }
 
-    .activity:not(.activity--load) .activity__body{
+    .activity:not(.activity--load) .activity__body {
         animation: animation-activity 0.2s;
     }
 
-    .animate{
-        &-opacity{
+    .animate {
+        &-opacity {
             animation: animation-opacity 0.3s
         }
 
-        &-up-content{
+        &-up-content {
             animation: animation-activity 0.2s
         }
     }
 }
 
 @media screen and (max-width: $media_xm) {
+
     .selectbox.animate .selectbox__content,
-    .settings.animate .settings__content{
+    .settings.animate .settings__content {
         animation: animation-from-below 0.3s forwards
     }
 
     .selectbox.animate-down .selectbox__content,
-    .settings.animate-down .settings__content{
+    .settings.animate-down .settings__content {
         animation: animation-down 0.3s forwards
     }
 
-    .modal.animate .modal__content{
+    .modal.animate .modal__content {
         animation: animation-from-below 0.3s !important
     }
-    .modal.animate-down .modal__content{
+
+    .modal.animate-down .modal__content {
         animation: animation-down 0.3s !important
     }
 }
